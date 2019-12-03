@@ -30,7 +30,13 @@ impl Config {
 }
 
 fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
-    vec![]
+    let mut results = Vec::new();
+    for line in content.lines() {
+        if line.contains(query) {
+            results.push(line);
+        }
+    }
+    results
 }
 
 #[cfg(test)]
@@ -41,10 +47,10 @@ mod tests {
     fn one_result() {
         let query = "ghetti";
         let content = "\
-        His palms are sweaty, knees weak, arms are heavy.
-        There's vomit on his sweater already, mom's spaghetti.
-        He's nervous, but on the surface he looks calm and ready.";
+His palms are sweaty, knees weak, arms are heavy
+There's vomit on his sweater already, mom's spaghetti
+He's nervous, but on the surface he looks calm and ready";
 
-        assert_eq!(vec!["There's vomit on his sweater already, mom's spaghetti."], search(query, content));
+        assert_eq!(vec!["There's vomit on his sweater already, mom's spaghetti"], search(query, content));
     }
 }
