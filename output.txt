@@ -1,0 +1,3 @@
+query : "the", filename : "poem.txt"
+Then there's a pair of us - don't tell!
+To tell your name the livelong day
