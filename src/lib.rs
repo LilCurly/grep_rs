@@ -4,7 +4,10 @@ use std::error::Error;
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let file_content = fs::read_to_string(&config.filename)?;
     
-    println!("Content of the file :\n{}", file_content);
+    for line in search(&config.query, &file_content) {
+        println!("{}", line);
+    }
+
     Ok(())
 }
 
