@@ -39,7 +39,7 @@ impl Config {
             None => return Err("File not specified"),
         };
 
-        let case_sensitive = !env::var("").is_ok() && match args.next() {
+        let case_sensitive = !env::var("CASE_SENSITIVE").is_ok() && match args.next() {
             Some(arg) => {
                 if arg.eq(&String::from("-i")) {
                     false
